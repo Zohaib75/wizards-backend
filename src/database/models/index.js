@@ -9,6 +9,7 @@ import book from './book';
 import stock from './stock';
 import tposmItem from './tposmItem';
 import stockItem from './stockItem';
+import bwuItem from './bwuItem';
 
 user.belongsToMany(shop, { through: 'shopAssign' });
 shop.belongsToMany(user, { through: 'shopAssign' });
@@ -36,5 +37,6 @@ export {
   book,
   stock,
   tposmItem,
-  stockItem
+  stockItem,
+  bwuItem
 };

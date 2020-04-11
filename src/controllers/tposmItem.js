@@ -12,10 +12,7 @@ tposmItemController.get = async (req, res) => {
 
 tposmItemController.getAll = async (req, res) => {
     try {
-        let pageNo = req.params.page;
-        let offset = (pageNo - 1) * 15;
-        let limit = 15;
-        const result = await tposmItem.findAll({ offset, limit });
+        const result = await tposmItem.findAll();
         res.status(200).json(result);
     } catch (error) {
         res.status(400).send(error);

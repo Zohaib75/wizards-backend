@@ -49,6 +49,7 @@ userController.getAll = async (req, res) => {
 userController.create = async (req, res) => {
   try {
     let body = req.body;
+    console.log(body);
     if (body.role === null || typeof (body.role) === 'undefined')
       res.status(400).send("Please provide a specific role to user.");
     else {

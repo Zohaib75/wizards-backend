@@ -1,4 +1,5 @@
 import { shop } from '../database/models';
+
 var shopController = {};
 
 shopController.get = async (req, res) => {
@@ -15,7 +16,7 @@ shopController.getAll = async (req, res) => {
         let pageNo = req.params.page;
         let offset = (pageNo - 1) * 15;
         let limit = 15;
-        const result = await shop.findAll({offset, limit});
+        const result = await shop.findAll({ offset, limit });
         res.status(200).json(result);
     } catch (error) {
         res.status(400).send(error);
@@ -25,6 +26,10 @@ shopController.getAll = async (req, res) => {
 shopController.create = async (req, res) => {
     try {
         let body = req.body;
+        console.log(req.file)
+        if (req.file)
+            body["image"] = req.file.filename;
+
         const result = await shop.create(body);
         res.status(200).json(result.dataValues.id);
     }
@@ -62,7 +67,7 @@ shopController.delete = async (req, res) => {
 
 shopController.addImage = async (req, res) => {
     try {
-       } catch (error) {
+    } catch (error) {
         res.status(400).send(error);
     }
 }

@@ -1,28 +1,28 @@
-import { stockItem } from '../database/models';
-var stockItemController = {};
+import { bwuItem } from '../database/models';
+var bwuItemController = {};
 
-stockItemController.get = async (req, res) => {
+bwuItemController.get = async (req, res) => {
     try {
-        const result = await stockItem.findByPk(req.params.itemId);
+        const result = await bwuItem.findByPk(req.params.itemId);
         res.status(200).json(result);
     } catch (error) {
         res.status(400).send(error);
     }
 }
 
-stockItemController.getAll = async (req, res) => {
+bwuItemController.getAll = async (req, res) => {
     try {
-        const result = await stockItem.findAll();
+        const result = await bwuItem.findAll();
         res.status(200).json(result);
     } catch (error) {
         res.status(400).send(error);
     }
 }
 
-stockItemController.create = async (req, res) => {
+bwuItemController.create = async (req, res) => {
     try {
         let body = req.body;
-        const result = await stockItem.create(body);
+        const result = await bwuItem.create(body);
         res.status(200).json(result.dataValues.id);
     }
     catch (error) {
@@ -30,10 +30,10 @@ stockItemController.create = async (req, res) => {
     }
 }
 
-stockItemController.update = async (req, res) => {
+bwuItemController.update = async (req, res) => {
     try {
         let body = req.body;
-        const result = await stockItem.update(body, {
+        const result = await bwuItem.update(body, {
             where: {
                 id: req.params.itemId
             }
@@ -44,9 +44,9 @@ stockItemController.update = async (req, res) => {
     }
 }
 
-stockItemController.delete = async (req, res) => {
+bwuItemController.delete = async (req, res) => {
     try {
-        const result = await stockItem.destroy({
+        const result = await bwuItem.destroy({
             where: {
                 id: req.params.itemId
             }
@@ -58,4 +58,4 @@ stockItemController.delete = async (req, res) => {
 }
 
 
-module.exports = stockItemController;
+module.exports = bwuItemController;

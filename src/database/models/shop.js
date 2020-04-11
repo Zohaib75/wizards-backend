@@ -3,6 +3,8 @@ import connection from '../connection';
 
 const shop = connection.define('shop', {
   shopCode: sequelize.STRING,
+  name: sequelize.STRING,
+  area: sequelize.STRING,
   owner: sequelize.STRING,
   mobile: sequelize.STRING,
   address: sequelize.STRING,
