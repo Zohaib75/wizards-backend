@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/events/index.js"],"names":["payload","console","log"],"mappings":";;;;;;;;;;;;;;4FAAe;AAAA;AAAA;AAAA;AAAA;AAAA;AAASA,YAAAA,OAAT,QAASA,OAAT;AACXC,YAAAA,OAAO,CAACC,GAAR,CAAYF,OAAZ;;AADW;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,G","sourcesContent":["export default async ({ payload }) => {\n    console.log(payload);\n}"],"file":"index.js"}
