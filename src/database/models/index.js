@@ -11,8 +11,8 @@ import tposmItem from './tposmItem';
 import stockItem from './stockItem';
 import bwuItem from './bwuItem';
 
-user.belongsToMany(shop, { through: 'shopAssign' });
-shop.belongsToMany(user, { through: 'shopAssign' });
+user.belongsToMany(shop, { through: 'shopAssign', as: 'shopAssignShops' });
+shop.belongsToMany(user, { through: 'shopAssign', as: 'shopAssignUsers' });
 
 shopAssign.hasMany(shopVisit);
 shopVisit.belongsTo(shopAssign);

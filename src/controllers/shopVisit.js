@@ -11,8 +11,8 @@ shopVisitController.create = async (req, res) => {
 
         if (req.body.tposm != null && typeof req.body.tposm != "undefined") {
             let tposmBody = JSON.parse(req.body.tposm);
-            tposmBody["imageOne"] = req.files.tposmImage1[0].filename;
-            tposmBody["imageTwo"] = req.files.tposmImage2[0].filename;
+            tposmBody["imageOne"] = req.files.tposmImageOne[0].filename;
+            tposmBody["imageTwo"] = req.files.tposmImageTwo[0].filename;
             tposmBody["shopVisitId"] = shopVisitId;
             await tposm.create(tposmBody);
         }

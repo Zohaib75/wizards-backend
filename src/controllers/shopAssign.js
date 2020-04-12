@@ -40,25 +40,35 @@ shopAssignController.getAll = async (req, res) => {
 
 shopAssignController.getShops = async (req, res) => {
     try {
-        const values = await shopAssign.findAll({
-            attributes: ['shopId'],
-            where: {
-                userId: req.params.userId,
-                status: 'assigned'
-            },
-            raw : true
-        });
+        // const values = await shopAssign.findAll({
+        //     attributes: ['shopId'],
+        //     where: {
+        //         userId: req.params.userId,
+        //         status: 'assigned'
+        //     },
+        //     raw: true
+        // });
 
-        let shopIds = values.map(value => value.shopId);
-        console.log(shopIds);
-        const result = await shop.findAll({
-            where:{
-                id:shopIds,
+        // console.log(values);
+        // let shopIds = values.map(value => value.shopId);
+        // console.log(shopIds);
+        let result = await shop.findAll({
+            where: {
                 visitDay: req.params.day
-            }
+            },
+            attributes: { include: [['id', 'shopId']], exclude: ['id', 'visitDay', 'createdAt', 'updatedAt'] },
+            include: [{
+                association: 'shopAssignUsers', where: { id: req.params.userId },
+                attributes: {
+                    include: [['id', 'userId']],
+                    exclude: ['id', 'username', 'password', 'mobile', 'imei',
+                        'role', 'zone', 'region', 'createdAt', 'updatedAt']
+                }
+            }]
         });
         res.status(200).json(result);
     } catch (error) {
+        console.log(error);
         res.status(400).send(error);
     }
 }

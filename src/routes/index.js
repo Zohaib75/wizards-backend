@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    if (file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
         cb(null, true);
     }
     else {
@@ -52,15 +52,15 @@ router.delete('/shop/:shopId', controllers.shop.deleteImage);
 
 // //shopAssign
 router.post('/assignShop', controllers.shopAssign.create);
-router.put('/unassignShop/:id', controllers.shopAssign.update);
+router.put('/assignShop/:id', controllers.shopAssign.update);
 router.get('/assignShop/:page', controllers.shopAssign.getAll);
 router.get('/assignShop/:userId/:day', controllers.shopAssign.getShops);
 
 // //shopVisit
 router.post('/visitShop', upload.fields([
     { name: 'shopVisitImage', maxCount: 1 },
-    { name: 'tposmImage1', maxCount: 1 },
-    { name: 'tposmImage2', maxCount: 1 },
+    { name: 'tposmImageOne', maxCount: 1 },
+    { name: 'tposmImageTwo', maxCount: 1 },
     { name: 'bwuImage', maxCount: 1 },
     { name: 'bookImage', maxCount: 1 },
 ]), controllers.shopVisit.create);
