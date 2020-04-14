@@ -29,6 +29,18 @@ const upload = multer({
     fileFilter: fileFilter
 });
 
+//test
+router.post('/test', upload.single('image'), (req, res) => {
+    try {
+        if (req.file)
+            res.send("Image Uploaded");
+        else
+            res.status(400).send("No image Found");
+    } catch (error) {
+        console.log(error);
+        res.status(400).send(error);
+    }
+});
 
 //user
 router.post('/user/login', controllers.user.login);
