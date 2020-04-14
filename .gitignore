@@ -114,6 +114,9 @@ dist
 .yarn/build-state.yml
 .pnp.*
 
-# public
-public/uploads/*
-src/public/uploads/*
+# images
+*.png
+*.jpg
+*.jpeg
+
+build/*
