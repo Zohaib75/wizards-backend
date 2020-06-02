@@ -56,6 +56,7 @@ router.delete('/user/:userId', controllers.user.delete);
 // shop
 router.get('/shop/:shopId', controllers.shop.get);
 router.get('/shop/:page', controllers.shop.getAll);
+router.get('/shop/image/:shopId', controllers.shop.getImage)
 router.post('/shop', upload.single('image'), controllers.shop.create);
 router.post('/shop/:shopId', controllers.shop.addImage);
 router.put('/shop/:shopId', controllers.shop.update);
@@ -73,7 +74,7 @@ router.post('/visitShop', upload.fields([
     { name: 'shopVisitImage', maxCount: 1 },
     { name: 'tposmImageOne', maxCount: 1 },
     { name: 'tposmImageTwo', maxCount: 1 },
-    { name: 'bwuImage', maxCount: 1 },
+    { name: 'bwuImage', maxCount: 2 },
     { name: 'bookImage', maxCount: 1 },
 ]), controllers.shopVisit.create);
 

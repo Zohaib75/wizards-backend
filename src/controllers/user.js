@@ -4,14 +4,23 @@ var userController = {};
 
 userController.login = async (req, res) => {
   try {
+    console.log(req.body)
     const result = await user.findOne({
-      attributes: ['imei'],
+      attributes: ['id', 'username', 'imei'],
       where: {
-        id: req.body.userId
+        password: req.body.code
       }
     });
-    res.status(200).json(result);
+    const { imei, ...userData } = result.dataValues;
+    let imeiArray = result.dataValues.imei.split(',');
+    // console.log(imeiArray)
+    // console.log(req.body.imei)
+    if (imeiArray.includes(req.body.imei))
+      res.status(200).json(userData);
+    else
+      res.status(404).json("Sorry, You are not Authorized.");
   } catch (error) {
+    console.log(error)
     res.status(400).send(error);
   }
 }

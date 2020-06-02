@@ -41,9 +41,10 @@ shopAssignController.getAll = async (req, res) => {
 shopAssignController.getShops = async (req, res) => {
     try {
         // const values = await shopAssign.findAll({
-        //     attributes: ['shopId'],
+        //     attributes: [['id', 'shopAssignId'], 'shopId'],
         //     where: {
         //         userId: req.params.userId,
+        //         visitDay: req.params.day,
         //         status: 'assigned'
         //     },
         //     raw: true
@@ -56,7 +57,7 @@ shopAssignController.getShops = async (req, res) => {
             where: {
                 visitDay: req.params.day
             },
-            attributes: { include: [['id', 'shopId']], exclude: ['id', 'visitDay', 'createdAt', 'updatedAt'] },
+            attributes: { include: [['id', 'shopId']], exclude: ['image', 'owner', 'mobile', 'id', 'visitDay', 'createdAt', 'updatedAt'] },
             include: [{
                 association: 'shopAssignUsers', where: { id: req.params.userId },
                 attributes: {

@@ -1,4 +1,5 @@
 import { shop } from '../database/models';
+const path = require("path");
 
 var shopController = {};
 
@@ -6,6 +7,16 @@ shopController.get = async (req, res) => {
     try {
         const result = await shop.findByPk(req.params.shopId);
         res.status(200).json(result);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
+
+shopController.getImage = async (req, res) => {
+    try {
+        const result = await shop.findByPk(req.params.shopId);
+        console.log(result.dataValues);
+        res.sendFile(path.join(__dirname, "../public/uploads/" + result.dataValues.image))
     } catch (error) {
         res.status(400).send(error);
     }

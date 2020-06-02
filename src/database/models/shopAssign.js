@@ -15,7 +15,7 @@ const shopAssign = connection.define('shopAssign', {
       model: user,
       key: 'id'
     }
-  },  
+  },
   shopId: {
     type: sequelize.INTEGER,
     references: {
